@@ -5,3 +5,23 @@
 // який створений у файлі index.html
 // Запустити програму за допомогою Live Server
 // Перевірити за допомогою команди npm tests/task1.test.js 
+
+
+const usersList = document.querySelector('.usersList');
+
+function fetchUsers() {
+    fetch('https://jsonplaceholder.typicode.com/users')
+        .then(response => response.json())
+        .then(users => {
+            usersList.innerHTML = '';
+            users.forEach(user => {
+                const listItem = document.createElement('li');
+                listItem.textContent = user.name;
+                usersList.appendChild(listItem);
+            });
+        })
+        .catch(error => console.error('Error fetching users:', error));
+}
+
+
+fetchUsers();
